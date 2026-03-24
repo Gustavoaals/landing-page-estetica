@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bella Estética — Beleza que transforma</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F9F5F0;
+    --rose: #C8826A;
+    --rose-light: #EDD5C8;
+    --rose-dark: #9A5C47;
+    --charcoal: #2C2420;
+    --muted: #8A7A74;
+    --white: #FFFFFF;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 1.5rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(249,245,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,130,106,0.15);
+    transition: all 0.3s;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 300; letter-spacing: 0.12em;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--rose); font-style: italic; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--rose); }
+  .nav-cta {
+    background: var(--rose); color: white;
+    padding: 0.6rem 1.6rem; border-radius: 2rem;
+    font-size: 0.82rem; letter-spacing: 0.08em;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--rose-dark); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    gap: 4rem;
+  }
+  .hero-text { animation: fadeUp 0.9s ease both; }
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--rose); border: 1px solid var(--rose-light);
+    padding: 0.4rem 1rem; border-radius: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300; line-height: 1.1;
+    color: var(--charcoal);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em { color: var(--rose); font-style: italic; }
+  .hero p {
+    font-size: 1rem; color: var(--muted); line-height: 1.8;
+    max-width: 420px; margin-bottom: 2.5rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--charcoal); color: white;
+    padding: 0.9rem 2.2rem; border-radius: 2rem;
+    font-size: 0.85rem; letter-spacing: 0.06em;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--rose); transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--charcoal); font-size: 0.85rem;
+    text-decoration: none; letter-spacing: 0.06em;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-ghost:hover { color: var(--rose); }
+  .hero-visual {
+    position: relative;
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+  .hero-card {
+    background: white;
+    border-radius: 2rem;
+    padding: 3rem;
+    box-shadow: 0 30px 80px rgba(44,36,32,0.12);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute; top: -30px; right: -30px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: var(--rose-light);
+    opacity: 0.4;
+  }
+  .hero-img-placeholder {
+    width: 100%; aspect-ratio: 4/3;
+    border-radius: 1.5rem;
+    background: linear-gradient(135deg, var(--rose-light) 0%, var(--cream) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem; color: var(--rose);
+    margin-bottom: 1.5rem;
+  }
+  .stats-row {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 600; color: var(--charcoal);
+  }
+  .stat-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; }
+
+  /* SERVICES */
+  .services {
+    padding: 6rem 4rem;
+    background: white;
+  }
+  .section-header { text-align: center; margin-bottom: 4rem; }
+  .section-tag {
+    font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 1rem; display: block;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 300; color: var(--charcoal);
+  }
+  .section-title em { color: var(--rose); font-style: italic; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+  }
+  .service-card {
+    background: var(--cream);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid transparent;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(200,130,106,0.15);
+    border-color: var(--rose-light);
+  }
+  .service-icon {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--rose-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1.2rem;
+  }
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem; font-weight: 400;
+    margin-bottom: 0.6rem; color: var(--charcoal);
+  }
+  .service-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+  .service-price {
+    margin-top: 1.2rem;
+    font-size: 0.8rem; color: var(--rose);
+    font-weight: 500; letter-spacing: 0.04em;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 6rem 4rem; background: var(--charcoal); }
+  .testimonials .section-title { color: var(--cream); }
+  .testimonials .section-tag { color: var(--rose-light); }
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; max-width: 1000px; margin: 0 auto;
+  }
+  .testimonial-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1.5rem; padding: 2rem;
+  }
+  .stars { color: var(--rose); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+  .testimonial-card p { color: rgba(249,245,240,0.8); font-size: 0.92rem; line-height: 1.8; margin-bottom: 1.5rem; font-style: italic; }
+  .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+  .avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--rose); display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 500; color: white;
+  }
+  .author-name { font-size: 0.85rem; color: var(--cream); font-weight: 500; }
+  .author-label { font-size: 0.75rem; color: var(--muted); }
+
+  /* CONTACT */
+  .contact {
+    padding: 6rem 4rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; max-width: 1100px; margin: 0 auto;
+    align-items: center;
+  }
+  .contact h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 300; line-height: 1.2; margin-bottom: 1rem;
+  }
+  .contact h2 em { color: var(--rose); font-style: italic; }
+  .contact > div > p { color: var(--muted); font-size: 0.92rem; line-height: 1.8; margin-bottom: 2rem; }
+  .contact-info { display: flex; flex-direction: column; gap: 0.75rem; }
+  .contact-info a {
+    display: flex; align-items: center; gap: 0.75rem;
+    color: var(--charcoal); text-decoration: none; font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  .contact-info a:hover { color: var(--rose); }
+  .contact-info span { font-size: 1.1rem; }
+  .contact-form { background: white; border-radius: 1.5rem; padding: 2.5rem; box-shadow: 0 10px 40px rgba(44,36,32,0.08); }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label { display: block; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; padding: 0.8rem 1rem;
+    border: 1px solid #E8E0DA; border-radius: 0.75rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    color: var(--charcoal); background: var(--cream);
+    transition: border-color 0.2s; outline: none;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--rose); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-submit {
+    width: 100%; background: var(--rose); color: white;
+    border: none; padding: 1rem; border-radius: 2rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    letter-spacing: 0.06em; cursor: pointer; transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--rose-dark); }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal); color: rgba(249,245,240,0.5);
+    text-align: center; padding: 2rem;
+    font-size: 0.8rem; letter-spacing: 0.05em;
+  }
+  footer span { color: var(--rose); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; text-align: center; }
+    .hero p { margin: 0 auto 2rem; }
+    .hero-btns { justify-content: center; }
+    .services { padding: 4rem 1.5rem; }
+    .testimonials { padding: 4rem 1.5rem; }
+    .contact { grid-template-columns: 1fr; padding: 4rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">bella <span>estética</span></a>
+  <ul class="nav-links">
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#depoimentos">Depoimentos</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <a href="#contato" class="nav-cta">Agendar</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">✦ Clínica de Estética Premium</div>
+    <h1>Beleza que <em>transforma</em> e encanta</h1>
+    <p>Tratamentos personalizados com tecnologia de ponta para realçar sua beleza natural. Experimente o cuidado que você merece.</p>
+    <div class="hero-btns">
+      <a href="#contato" class="btn-primary">Agendar consulta</a>
+      <a href="#servicos" class="btn-ghost">Ver serviços →</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="hero-img-placeholder">✦</div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-num">1.2k+</div><div class="stat-label">Clientes felizes</div></div>
+        <div class="stat"><div class="stat-num">8 anos</div><div class="stat-label">De experiência</div></div>
+        <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Satisfação</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="servicos">
+  <div class="section-header reveal">
+    <span class="section-tag">O que oferecemos</span>
+    <h2 class="section-title">Nossos <em>serviços</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">✨</div>
+      <h3>Limpeza de Pele</h3>
+      <p>Tratamento profundo para remover impurezas, cravos e células mortas, deixando a pele radiante e renovada.</p>
+      <div class="service-price">A partir de R$ 180</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">💆</div>
+      <h3>Harmonização Facial</h3>
+      <p>Procedimentos não invasivos para realçar os traços naturais e proporcionar equilíbrio e harmonia ao rosto.</p>
+      <div class="service-price">A partir de R$ 900</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🌿</div>
+      <h3>Tratamento Corporal</h3>
+      <p>Massagens modeladoras, drenagem linfática e tratamentos redutores com resultados comprovados.</p>
+      <div class="service-price">A partir de R$ 250</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">💫</div>
+      <h3>Skincare Personalizado</h3>
+      <p>Protocolo de cuidados domiciliares desenvolvido exclusivamente para o seu tipo de pele e necessidades.</p>
+      <div class="service-price">A partir de R$ 320</div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="depoimentos">
+  <div class="section-header reveal">
+    <span class="section-tag">Depoimentos</span>
+    <h2 class="section-title" style="color:var(--cream)">O que dizem <em>nossas clientes</em></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>"Minha pele nunca esteve tão bonita. A limpeza de pele foi incrível e os resultados duraram meses. Super recomendo!"</p>
+      <div class="testimonial-author">
+        <div class="avatar">AM</div>
+        <div><div class="author-name">Ana Martins</div><div class="author-label">Cliente há 2 anos</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>"Profissionalismo e carinho em cada detalhe. Me sinto muito mais confiante depois dos tratamentos. Equipe incrível!"</p>
+      <div class="testimonial-author">
+        <div class="avatar">CS</div>
+        <div><div class="author-name">Camila Souza</div><div class="author-label">Cliente há 1 ano</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>"O ambiente é lindo e o atendimento é impecável. Faço drenagem toda semana e os resultados são visíveis!"</p>
+      <div class="testimonial-author">
+        <div class="avatar">RF</div>
+        <div><div class="author-name">Renata Faria</div><div class="author-label">Cliente há 3 anos</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 6rem 4rem">
+  <div class="contact" style="padding:0">
+    <div>
+      <span class="section-tag">Fale conosco</span>
+      <h2>Pronta para <em>começar</em> sua transformação?</h2>
+      <p>Agende sua consulta gratuita e descubra o tratamento ideal para você. Estamos à disposição para tirar todas as suas dúvidas.</p>
+      <div class="contact-info">
+        <a href="https://wa.me/5548999999999"><span>📱</span> (48) 99999-9999 — WhatsApp</a>
+        <a href="mailto:contato@bellastetica.com.br"><span>✉️</span> contato@bellastetica.com.br</a>
+        <a href="#"><span>📍</span> Florianópolis, SC</a>
+      </div>
+    </div>
+    <div class="contact-form reveal" id="contato">
+      <div class="form-group">
+        <label>Seu nome</label>
+        <input type="text" placeholder="Maria Silva">
+      </div>
+      <div class="form-group">
+        <label>WhatsApp</label>
+        <input type="tel" placeholder="(48) 99999-9999">
+      </div>
+      <div class="form-group">
+        <label>Serviço de interesse</label>
+        <select>
+          <option>Limpeza de Pele</option>
+          <option>Harmonização Facial</option>
+          <option>Tratamento Corporal</option>
+          <option>Skincare Personalizado</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mensagem (opcional)</label>
+        <textarea placeholder="Conte um pouco sobre o que você busca..."></textarea>
+      </div>
+      <button class="form-submit" onclick="handleSubmit()">Agendar minha consulta →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Desenvolvido com ♥ por <span>seu-nome</span> · Bella Estética © 2025
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  function handleSubmit() {
+    const btn = document.querySelector('.form-submit');
+    btn.textContent = '✓ Agendamento enviado!';
+    btn.style.background = '#1D9E75';
+    setTimeout(() => {
+      btn.textContent = 'Agendar minha consulta →';
+      btn.style.background = '';
+    }, 3000);
+  }
+</script>
+</body>
+</html>
